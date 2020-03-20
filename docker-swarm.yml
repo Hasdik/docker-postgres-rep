@@ -1,0 +1,33 @@
+version: "3"
+services:
+  pg_master:
+    image: vektor-postgres-master
+    volumes:
+      - pg_data: /home/vektor32/vektor-postgres/postgresql/9.6/main:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_MODE=master
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=ySUH2aMY
+      - POSTGRES_DB=symway
+      - PG_REP_USER=replication
+      - PG_REP_PASSWORD=dy7aW5Xw
+    networks:
+      default:
+        aliases:
+          - pg_cluster
+  pg_slave:
+    image: vektor-postgres-slave
+    environment:
+      - POSTGRES_MODE=slave
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=ySUH2aMY
+      - POSTGRES_DB=symway
+      - PG_REP_USER=replication
+      - PG_REP_PASSWORD=dy7aW5Xw
+      - PG_MASTER_HOST=pg_master
+    networks:
+      default:
+        aliases:
+          - pg_cluster
+volumes:
+  pg_data:
