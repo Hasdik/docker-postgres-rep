@@ -2,8 +2,10 @@ version: "3"
 services:
   pg_master:
     image: vektor-postgres-master
+    ports:
+      - "5432:5432"
     volumes:
-      - pg_data: /home/vektor32/vektor-postgres/postgresql/9.6/main:/var/lib/postgresql/data
+      - pg_data:/home/vektor32/vektor-postgres/postgresql/9.6/main:/var/lib/postgresql/data
     environment:
       - POSTGRES_MODE=master
       - POSTGRES_USER=postgres
@@ -24,7 +26,7 @@ services:
       - POSTGRES_DB=symway
       - PG_REP_USER=replication
       - PG_REP_PASSWORD=dy7aW5Xw
-      - PG_MASTER_HOST=pg_master
+      - PG_MASTER_HOST=IP_MASTER
     networks:
       default:
         aliases:
