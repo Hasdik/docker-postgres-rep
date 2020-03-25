@@ -1,6 +1,6 @@
 # docker-postgres-rep
 # settings docker Swarm
-1) Из master машины необходимо выполнить docker swarm init --advertise-addr IP_MASTER (указываем IP master машины)
+1) Из master машины необходимо выполнить docker swarm init --advertise-addr IP_MASTER:2377 (указываем IP master машины)
 2) Далее получим команду типа 'docker swarm join-token manager ...', это необходимо выполнить из slave машины, чтобы присоединить worker к кластеру.
 # settings replication
 1) Из master машины необходимо выполнить docker build -t vektor-postgres-master . для создания образа
