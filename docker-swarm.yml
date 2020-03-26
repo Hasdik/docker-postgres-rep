@@ -19,6 +19,8 @@ services:
           - pg_cluster
   pg_slave:
     image: vektor-postgres-slave
+    ports:
+      - "5434:5434"
     environment:
       - POSTGRES_MODE=slave
       - POSTGRES_USER=postgres
@@ -26,7 +28,7 @@ services:
       - POSTGRES_DB=symway
       - PG_REP_USER=replication
       - PG_REP_PASSWORD=dy7aW5Xw
-      - PG_MASTER_HOST=IP_MASTER
+      - PG_MASTER_HOST=pg_master
     networks:
       default:
         aliases:
